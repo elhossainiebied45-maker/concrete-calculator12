@@ -4,18 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>حاسبة مقاولات الخرسانة</title>
-
-<!-- ⭐ PWA Meta Tags -->
-<meta name="theme-color" content="#12304f">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="مقاولات الخرسانة">
-<meta name="application-name" content="مقاولات الخرسانة">
-<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="manifest" href="manifest.webmanifest">
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef2f7;--card:#fff;--primary:#12304f;--primary-2:#1d4e7c;--accent:#f59e0b;
@@ -42,11 +30,6 @@ display:inline-flex;align-items:center;gap:5px}
 .btn-danger:hover{background:#dc2626}
 .btn-save{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff}
 .btn-save:hover{filter:brightness(1.08)}
-.btn-install{background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;
-box-shadow:0 2px 8px -2px rgba(139,92,246,.5)}
-.btn-install:hover{filter:brightness(1.1);transform:translateY(-1px);
-box-shadow:0 4px 12px -2px rgba(139,92,246,.6)}
-.btn-install.hidden{display:none}
 .card{background:var(--card);border-radius:16px;padding:18px;box-shadow:0 4px 18px -10px rgba(18,48,79,.28);
 border:1px solid rgba(226,232,240,.9)}
 .card.wood-card{border:1.5px solid var(--wood-border);background:linear-gradient(180deg,#fffbeb,#fff);transition:.2s}
@@ -78,26 +61,20 @@ border:1px solid var(--wood-border);transition:.2s}
 
 .formula-help{margin-bottom:12px;border:1.5px dashed #bfdbfe;border-radius:10px;
 background:linear-gradient(135deg,#eff6ff,#f8fbff);padding:0;overflow:hidden}
-.formula-help.wood-formula-help{border-color:var(--wood-border);background:linear-gradient(135deg,#fffbeb,#fef9c3)}
 .formula-help summary{padding:9px 14px;cursor:pointer;font-weight:800;color:var(--primary-2);
 font-size:.8rem;list-style:none;display:flex;align-items:center;gap:7px;user-select:none}
-.formula-help.wood-formula-help summary{color:var(--wood)}
 .formula-help summary::-webkit-details-marker{display:none}
 .formula-help summary::before{content:'▸';transition:.2s;display:inline-block}
 .formula-help[open] summary::before{transform:rotate(90deg)}
 .formula-help summary:hover{background:#dbeafe}
-.formula-help.wood-formula-help summary:hover{background:#fef3c7}
 .formula-help .examples{padding:0 14px 12px;font-size:.76rem;line-height:1.9;color:var(--text)}
 .formula-help .examples code{background:#fff;border:1px solid #bfdbfe;border-radius:5px;
 padding:1px 7px;font-family:'Courier New',monospace;font-size:.78rem;color:#1d4e7c;
 direction:ltr;display:inline-block;margin:0 2px}
-.formula-help.wood-formula-help .examples code{border-color:var(--wood-border);color:var(--wood)}
 .formula-help .examples .ex-row{display:flex;gap:8px;align-items:flex-start;padding:4px 0;
 border-bottom:1px dashed #dbeafe}
-.formula-help.wood-formula-help .examples .ex-row{border-bottom-color:var(--wood-border)}
 .formula-help .examples .ex-row:last-child{border-bottom:0}
 .formula-help .examples .ex-row b{color:var(--primary-2);font-weight:800;white-space:nowrap}
-.formula-help.wood-formula-help .examples .ex-row b{color:var(--wood)}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
 .field{display:flex;flex-direction:column;gap:5px}
@@ -149,17 +126,9 @@ font-weight:700;font-size:.9rem;color:var(--primary)}
 padding:9px 10px;display:flex;flex-direction:column;gap:5px;text-align:center;transition:.2s}
 .wood-payment-grid .w-item span{color:var(--wood);font-weight:800;font-size:.72rem}
 .wood-payment-grid .w-item b{color:var(--wood);font-weight:800;direction:ltr;font-size:.92rem;padding:4px 0}
-.wood-payment-grid .w-item input[type=text]{text-align:center;direction:ltr;font-size:.82rem;
-padding:6px 8px;background:#fffbeb;border-color:var(--wood-border);
-font-family:'Courier New',monospace}
-.wood-payment-grid .w-item input[type=text]:hover{background:#fef3c7;border-color:var(--wood)}
-.wood-payment-grid .w-item input[type=text]:focus{background:#fff;border-color:var(--wood);
-box-shadow:0 0 0 3px rgba(180,83,9,.12)}
-.wood-payment-grid .w-item input[type=text].invalid{background:#fef2f2;border-color:#fecaca}
-.wood-payment-grid .w-item .formula-result{font-size:.66rem;color:var(--wood);font-weight:800;
-direction:ltr;text-align:center;font-family:'Courier New',monospace;padding:1px 0;letter-spacing:.2px}
-.wood-payment-grid .w-item .formula-result.invalid{color:var(--red)}
-.wood-payment-grid .w-item .formula-result b{color:var(--wood);font-size:.74rem}
+.wood-payment-grid .w-item input{text-align:center;font-size:.88rem;padding:6px 8px;
+background:#fffbeb;border-color:var(--wood-border)}
+.wood-payment-grid .w-item input:focus{background:#fff;border-color:var(--wood);box-shadow:0 0 0 3px rgba(180,83,9,.12)}
 .wood-payment-grid .w-item.remaining{background:#f0fdf4;border-color:#bbf7d0}
 .wood-payment-grid .w-item.remaining span{color:var(--green)}
 .wood-payment-grid .w-item.remaining b{color:var(--green)}
@@ -169,21 +138,25 @@ direction:ltr;text-align:center;font-family:'Courier New',monospace;padding:1px 
 .card.wood-card.included .wood-payment-grid .w-item{border-color:#bbf7d0}
 .card.wood-card.included .wood-payment-grid .w-item span,
 .card.wood-card.included .wood-payment-grid .w-item b{color:var(--green)}
-.card.wood-card.included .wood-payment-grid .w-item input[type=text]{background:#f0fdf4;border-color:#bbf7d0}
+.card.wood-card.included .wood-payment-grid .w-item input{background:#f0fdf4;border-color:#bbf7d0}
 
-td.labor-cell{padding:5px}
-td.labor-cell .labor-wrap{display:flex;flex-direction:column;gap:2px;min-width:100px}
+/* ⭐ خلية الصنايعيه (مساعد ) - خط مكبّر */
+td.labor-cell{padding:6px}
+td.labor-cell .labor-wrap{display:flex;flex-direction:column;gap:4px;min-width:120px}
 td.labor-cell input[data-field=laborInput]{
-  text-align:center;direction:ltr;font-family:'Courier New',monospace;font-size:.82rem;
-  padding:6px 8px;min-width:95px;background:#f0f9ff;border-color:#bfdbfe;transition:.15s}
+  text-align:center;direction:ltr;font-family:'Courier New',monospace;font-size:.95rem;
+  font-weight:700;padding:7px 9px;min-width:115px;background:#f0f9ff;border-color:#bfdbfe;transition:.15s}
 td.labor-cell input[data-field=laborInput]:hover{background:#e0f2fe;border-color:#93c5fd}
 td.labor-cell input[data-field=laborInput]:focus{background:#fff;border-color:var(--primary-2);
 box-shadow:0 0 0 3px rgba(29,78,124,.12)}
 td.labor-cell input[data-field=laborInput].invalid{background:#fef2f2;border-color:#fecaca}
-.formula-result{font-size:.68rem;color:var(--muted);font-weight:800;direction:ltr;
-text-align:center;font-family:'Courier New',monospace;padding:1px 0;letter-spacing:.2px}
-.formula-result.invalid{color:var(--red)}
-.formula-result b{color:var(--primary)}
+
+/* ⭐ نتيجة المساعد  - خط كبير وواضح */
+.formula-result{font-size:.9rem;color:var(--primary);font-weight:800;direction:ltr;
+text-align:center;font-family:'Courier New',monospace;padding:3px 0;
+letter-spacing:.3px;line-height:1.2}
+.formula-result.invalid{color:var(--red);font-size:.78rem}
+.formula-result b{color:var(--primary-2)}
 
 .concrete-split{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
 .concrete-split .s{background:#f8fafc;border:1px solid var(--border);border-radius:8px;
@@ -254,7 +227,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
   @page{size:A4;margin:10mm}
   body{background:#fff;padding:0;font-size:10.5px;line-height:1.4}
   .app{max-width:none;gap:8px}
-  .actions,.add-row,.del,.toast-wrap,.save-info,.hint,.toggle-wrap,.formula-help,.btn-install,th:last-child,td:last-child,#restore-file{display:none!important}
+  .actions,.add-row,.del,.toast-wrap,.save-info,.hint,.toggle-wrap,.formula-help,th:last-child,td:last-child,#restore-file{display:none!important}
   header{padding:12px 16px;border-radius:10px;background:#12304f!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   header h1{font-size:1rem}header h1 span{color:#f59e0b!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .card{box-shadow:none;border:1px solid #cbd5e1;break-inside:avoid;page-break-inside:avoid;margin-bottom:8px;padding:10px 12px;border-radius:8px}
@@ -266,16 +239,17 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
   tbody td{padding:2px;border-bottom:1px solid #e5e7eb}
   tbody td input{border:0!important;background:transparent!important;padding:2px 3px!important;font-size:.72rem!important;box-shadow:none!important;color:#111!important}
   td.labor-cell{padding:2px}
-  td.labor-cell input[data-field=laborInput]{font-size:.7rem!important;padding:1px!important}
-  .formula-result{font-size:.6rem!important;padding:0!important}
+  td.labor-cell .labor-wrap{gap:1px;min-width:0}
+  td.labor-cell input[data-field=laborInput]{font-size:.78rem!important;padding:1px!important;min-width:0}
+  .formula-result{font-size:.75rem!important;padding:1px 0!important}
+  .formula-result.invalid{font-size:.65rem!important}
   .row-total,.row-net{font-size:.72rem}
   .subtotal{font-size:.76rem;padding:6px 10px;margin-top:5px}
   .wood-payment-grid{gap:5px;margin-top:6px}
   .wood-payment-grid .w-item{padding:5px}
   .wood-payment-grid .w-item span{font-size:.62rem}
   .wood-payment-grid .w-item b{font-size:.78rem;padding:2px 0}
-  .wood-payment-grid .w-item input[type=text]{font-size:.68rem;padding:3px 5px}
-  .wood-payment-grid .w-item .formula-result{font-size:.6rem;padding:0}
+  .wood-payment-grid .w-item input{font-size:.72rem;padding:3px 5px}
   .print-only{display:block!important}
   .print-head{border-bottom:2px solid #12304f;padding-bottom:6px;margin-bottom:4px}
   .print-head h2{font-size:1rem;color:#12304f;font-weight:800;border:0;padding:0;margin:0 0 2px;display:block}
@@ -311,7 +285,6 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
   <header>
     <h1>🏗️ حاسبة <span>مقاولات الخرسانة</span></h1>
     <div class="actions">
-      <button class="btn btn-install" id="install-btn" onclick="handleInstall()">📱 تثبيت</button>
       <button class="btn btn-save" onclick="saveAsFile()">💾 حفظ في ملف</button>
       <button class="btn btn-light" onclick="saveNow()">💾 حفظ سريع</button>
       <button class="btn btn-light" onclick="exportExcel()">📊 Excel</button>
@@ -325,8 +298,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
   <section class="card" style="padding:14px">
     <div class="save-info">
       <div class="row"><span>💾</span><div><b>الحفظ التلقائي:</b> جوه المتصفح (localStorage).</div></div>
-      <div class="row"><span>📥</span><div><b>زر «حفظ في ملف»:</b> يفتحلك اختيار الفولدر (Android) أو ينزل في <span class="badge">Download</span></div></div>
-      <div class="row"><span>📱</span><div><b>زر «تثبيت»:</b> يثبّت التطبيق كأيقونة على الشاشة الرئيسية (يعمل من رابط HTTPS)</div></div>
+      <div class="row"><span>📥</span><div><b>زر «حفظ في ملف»:</b> يفتحلك اختيار الفولدر (Android) و ينزل في <span class="badge">Download</span></div></div>
     </div>
   </section>
 
@@ -360,7 +332,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
       </div>
     </h2>
     <p class="hint wood-hint" id="wood-hint">
-      ⚠️ تكلفة الخشب معروضة بشكل منفصل — <b>لا تدخل في إجمالي التكاليف ولا في حساب الربح</b>.
+      ⚠️ تكلفة الخشب معروضة بشكل منفصل -- <b>لا تدخل في إجمالي التكاليف ولا في حساب الربح</b>.
     </p>
     <div class="tbl-wrap"><table>
       <thead><tr><th>البيان</th><th>الكمية</th><th>سعر الوحدة</th><th>الإجمالي</th><th></th></tr></thead>
@@ -369,16 +341,6 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
     <button class="add-row" onclick="addRow('wood')">+ إضافة بند خشب</button>
     <div class="subtotal wood"><span id="wood-subtotal-label">إجمالي تكلفة الخشب (منفصلة)</span><b id="wood-total">0</b></div>
 
-    <details class="formula-help wood-formula-help">
-      <summary>🖩 أمثلة على معادلات المسدد</summary>
-      <div class="examples">
-        <div class="ex-row"><b>8000</b><div>مبلغ مباشر بسيط</div></div>
-        <div class="ex-row"><b><code>5000+3000</code></b><div>دفعتين مجمّعتين = <b>8,000</b></div></div>
-        <div class="ex-row"><b><code>(4*1500)+(2*500)</code></b><div>4 دفعات × 1500 + 2 دفعات × 500 = <b>7,000</b></div></div>
-        <div class="ex-row"><b><code>10000-2000</code></b><div>دفعة ناقصة خصم = <b>8,000</b></div></div>
-      </div>
-    </details>
-
     <div class="wood-payment-grid">
       <div class="w-item">
         <span>💵 إجمالي الخشب</span>
@@ -386,8 +348,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
       </div>
       <div class="w-item">
         <span>✅ المسدد من الخشب</span>
-        <input id="wood-paid-input" type="text" placeholder="5000+3000" dir="ltr">
-        <div class="formula-result" id="wood-paid-result">= 0</div>
+        <input id="wood-paid-input" type="number" min="0" step="any" placeholder="0">
       </div>
       <div class="w-item remaining" id="wood-remaining-item">
         <span>⏳ المتبقي</span>
@@ -407,27 +368,28 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
   </section>
 
   <section class="card">
-    <h2><span class="icon">🧱</span> بنود الخرسانة (الصناعية والصافي)</h2>
+    <h2><span class="icon">🧱</span> بنود الخرسانة (الصنايعيه والصافي)</h2>
     <p class="hint">
-      💡 <b>الصناعية</b> = تقبل رقم أو معادلة (تُحسب لحظياً)<br>
+      💡 <b>الصنايعيه </b> = تقبل صنايعي  و مساعد  (تُحسب لحظياً)<br>
       💡 <b>قيمة الخرسانة</b> = كمية (م³) × سعر المتر<br>
-      💡 <b>الصافي</b> = قيمة الخرسانة − الصناعية
+      💡 <b>الصافي</b> = قيمة الخرسانة − الصنايعيه 
     </p>
 
     <details class="formula-help">
-      <summary>🖩 أمثلة على معادلات الصناعية</summary>
+      <summary>🖩 أمثلة على معادلات الصنايعيه </summary>
       <div class="examples">
-        <div class="ex-row"><b>6300</b><div>رقم مباشر بسيط (إجمالي الصناعية)</div></div>
+        <div class="ex-row"><b>6300</b><div>صنايعي  مباشر بسيط (إجمالي الصنايعيه )</div></div>
         <div class="ex-row"><b><code>4*400*3</code></b><div>4 صنايعية × يومية 400 × 3 أيام = <b>4,800</b></div></div>
         <div class="ex-row"><b><code>4*400*3 + 2*250*3</code></b><div>4 صنايعية × 400 × 3 أيام + 2 مساعدين × 250 × 3 أيام = <b>6,300</b></div></div>
         <div class="ex-row"><b><code>(4+2)*350*3</code></b><div>6 عمال × 350 × 3 أيام = <b>6,300</b></div></div>
+        <div class="ex-row"><b><code>qty*price</code></b><div>لو عايز تضرب صنايعي ين -- استخدم <code>*</code> للضرب و <code>/</code> للقسمة</div></div>
       </div>
     </details>
 
-    <div class="tbl-wrap"><table style="min-width:720px">
+    <div class="tbl-wrap"><table style="min-width:740px">
       <thead><tr>
         <th>البند</th>
-        <th>الصناعية (رقم أو معادلة)</th>
+        <th>الصنايعيه (صنايعي  و مساعد )</th>
         <th>كمية (م³)</th>
         <th>سعر المتر</th>
         <th>قيمة الخرسانة</th>
@@ -437,7 +399,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
       <tbody id="concrete-body"></tbody>
     </table></div>
     <button class="add-row" onclick="addRow('concrete')">+ إضافة بند خرسانة</button>
-    <div class="subtotal"><span>إجمالي الصناعية (تكلفة)</span><b id="concrete-total">0</b></div>
+    <div class="subtotal"><span>إجمالي الصنايعيه (تكلفة)</span><b id="concrete-total">0</b></div>
     <div class="concrete-split">
       <div class="s value"><span>قيمة الخرسانة</span><b id="concrete-value">0</b></div>
       <div class="s net" id="concrete-net-box"><span>الصافي</span><b id="concrete-net">0</b></div>
@@ -469,7 +431,7 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
     <h2><span class="icon">📊</span> النتائج والحسابات</h2>
     <div class="breakdown">
       <div class="brow"><span>المسامير والشامبر والبسكوت</span><b id="r-misc">0</b></div>
-      <div class="brow"><span>الصناعية (الخرسانة)</span><b id="r-concrete">0</b></div>
+      <div class="brow"><span>الصنايعيه (الخرسانة)</span><b id="r-concrete">0</b></div>
       <div class="brow"><span>مصروفات نقل ومعدات</span><b id="r-transport">0</b></div>
       <div class="brow total"><span id="costs-label">إجمالي التكاليف (بدون خشب)</span><b id="r-costs">0</b></div>
       <div class="brow wood-separate" id="wood-breakdown-row">
@@ -510,94 +472,12 @@ display:flex;align-items:center;gap:8px;white-space:nowrap;max-width:90vw}
 <div class="toast-wrap" id="toast-wrap"></div>
 
 <script>
-/* ============ PWA Setup ============ */
-let deferredPrompt = null;
-let isInstalled = false;
-
-function setupPWA(){
-  const isStandalone =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.matchMedia('(display-mode: minimal-ui)').matches ||
-    window.navigator.standalone === true;
-  isInstalled = isStandalone;
-  updateInstallButton();
-
-  // تسجيل Service Worker مطلوب لتجربة تثبيت وعمل التطبيق بشكل أفضل.
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  }
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    updateInstallButton();
-  });
-
-  window.addEventListener('appinstalled', () => {
-    isInstalled = true;
-    deferredPrompt = null;
-    updateInstallButton();
-    toast('🎉 التطبيق اتثبت على شاشتك الرئيسية', 'ok');
-  });
-}
-
-function updateInstallButton(){
-  const btn = document.getElementById('install-btn');
-  if(!btn) return;
-  if(isInstalled){
-    btn.classList.add('hidden');
-  } else {
-    btn.classList.remove('hidden');
-  }
-}
-
-function handleInstall(){
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(({ outcome }) => {
-      if(outcome === 'accepted'){
-        toast('✅ جاري تثبيت التطبيق...', 'ok');
-      } else {
-        toast('تم إلغاء التثبيت', 'info');
-      }
-      deferredPrompt = null;
-      updateInstallButton();
-    }).catch(() => {});
-    return;
-  }
-
-  const isStandalone =
-    window.matchMedia('(display-mode: standalone)').matches ||
-    window.navigator.standalone === true;
-  if(isStandalone){
-    toast('✅ التطبيق مثبت بالفعل على جهازك', 'info');
-    return;
-  }
-
-  const ua = navigator.userAgent || '';
-  const isAndroid = /android/i.test(ua);
-  const isFile = location.protocol === 'file:';
-
-  if(isFile){
-    alert('📌 لتثبيت التطبيق كأيقونة، ارفع مجلد التطبيق على استضافة HTTPS مجانية، ثم افتح الرابط من Chrome واضغط «تثبيت».');
-    return;
-  }
-
-  if(isAndroid){
-    alert('📱 افتح قائمة Chrome (⋮)، ثم اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».');
-    return;
-  }
-
-  alert('افتح قائمة المتصفح واختر «تثبيت» أو «إضافة إلى الشاشة الرئيسية».');
-}
-
-/* ============ باقي التطبيق ============ */
 const STORAGE_KEY = 'concreteContractorCalc_v1';
 const SECTIONS = ['wood','misc','concrete','transport','received','payments'];
 
 const state = {
   project: { name:'', client:'', date:'', currency:'ج.م', contract:0, received:0,
-             includeWoodInCosts: false, woodPaid: 0, woodPaidInput: '' },
+             includeWoodInCosts: false, woodPaid: 0 },
   sections: { wood:[], misc:[], concrete:[], transport:[], received:[], payments:[] }
 };
 
@@ -617,9 +497,13 @@ function evalFormula(expr){
   if(!s) return 0;
   const direct = parseFloat(s);
   if(!isNaN(direct) && /^[+-]?\d+(\.\d+)?$/.test(s)) return direct;
-  s = s.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-')
-       .replace(/٫/g, '.').replace(/٬/g, '').replace(/,/g, '')
-       .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+  s = s.replace(/×/g, '*')
+       .replace(/÷/g, '/')
+       .replace(/−/g, '-')
+       .replace(/٫/g, '.')
+       .replace(/٬/g, '')
+       .replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+       .replace(/,/g, '');
   if(!/^[0-9+\-*/().\s]+$/.test(s)) return 0;
   try{
     const result = new Function('"use strict"; return (' + s + ');')();
@@ -632,7 +516,9 @@ function isFormulaValid(expr){
   if(!expr) return true;
   const s = String(expr).trim();
   if(!s) return true;
-  const cleaned = s.replace(/[×÷−٫٬]/g,'').replace(/[٠-٩]/g,'').replace(/,/g,'');
+  const cleaned = s.replace(/[×÷−٫٬]/g,'')
+                   .replace(/[٠-٩]/g,'')
+                   .replace(/,/g,'');
   return /^[0-9+\-*/().\s]*$/.test(cleaned);
 }
 
@@ -687,7 +573,7 @@ function syncWoodToggleUI(){
   hint.classList.toggle('active', include);
   hint.innerHTML = include
     ? '✅ تكلفة الخشب <b>محتسبة ضمن إجمالي التكاليف</b> وتؤثر على الربح.'
-    : '⚠️ تكلفة الخشب معروضة بشكل منفصل — <b>لا تدخل في إجمالي التكاليف ولا في حساب الربح</b>.';
+    : '⚠️ تكلفة الخشب معروضة بشكل منفصل -- <b>لا تدخل في إجمالي التكاليف ولا في حساب الربح</b>.';
   $('wood-breakdown-row').classList.toggle('included', include);
   $('wood-breakdown-note').textContent = include ? 'محتسبة داخل التكاليف' : 'غير محتسبة في التكاليف والربح';
   $('costs-label').textContent = include ? 'إجمالي التكاليف (شامل الخشب)' : 'إجمالي التكاليف (بدون خشب)';
@@ -697,15 +583,7 @@ function bindWoodPaid(){
   const inp = $('wood-paid-input');
   if(!inp) return;
   inp.addEventListener('input', ()=>{
-    state.project.woodPaidInput = inp.value;
-    state.project.woodPaid = evalFormula(inp.value);
-    const resultEl = $('wood-paid-result');
-    if(resultEl){
-      const invalid = inp.value && !isFormulaValid(inp.value);
-      resultEl.className = 'formula-result' + (invalid ? ' invalid' : '');
-      resultEl.textContent = invalid ? '⚠ معادلة غير صالحة' : '= ' + fmt(state.project.woodPaid);
-    }
-    inp.classList.toggle('invalid', inp.value && !isFormulaValid(inp.value));
+    state.project.woodPaid = num(inp.value);
     updateTotals();
     save();
   });
@@ -719,7 +597,7 @@ function renderSection(key){
   if(key === 'payments' || key === 'received'){
     tbody.innerHTML = rows.map((r,i)=>`
       <tr data-idx="${i}">
-        <td><input data-field="desc" value="${esc(r.desc)}" placeholder="${key==='received'?'مثال: دفعة أولى / دفعة عند الصب':'مثال: دفعة نجارين / شراء خشب'}"></td>
+        <td><input data-field="desc" value="${esc(r.desc)}" placeholder="${key==='received'?'مثال: دفعة ولى / دفعة عند الصب':'مثال: دفعة نجارين / شراء خشب'}"></td>
         <td><input data-field="date" type="date" value="${esc(r.date||'')}" style="max-width:150px;margin:0 auto"></td>
         <td><input data-field="price" type="number" min="0" step="any" value="${r.price||''}" placeholder="0" style="max-width:150px;margin:0 auto"></td>
         <td><button class="del" data-del="${i}" title="حذف">✕</button></td>
@@ -731,7 +609,7 @@ function renderSection(key){
       const expr = (typeof r.laborInput === 'string') ? r.laborInput : String(r.labor || '');
       const invalid = expr && !isFormulaValid(expr);
       const resultClass = invalid ? 'formula-result invalid' : 'formula-result';
-      const resultText = invalid ? '⚠ معادلة غير صالحة' : '= ' + fmt(labor);
+      const resultText = invalid ? '⚠ مساعد  غير صالحة' : '= ' + fmt(labor);
       return `<tr data-idx="${i}">
         <td><input data-field="desc" value="${esc(r.desc)}" placeholder="البند"></td>
         <td class="labor-cell">
@@ -791,13 +669,8 @@ function updateTotals(){
   $('wood-total-display').textContent = money(t.wood);
   $('wood-remaining-display').textContent = money(t.woodRemaining);
   $('wood-remaining-item').classList.toggle('neg', t.woodRemaining < 0);
-
-  const resultEl = $('wood-paid-result');
-  if(resultEl){
-    const inputVal = $('wood-paid-input').value;
-    const invalid = inputVal && !isFormulaValid(inputVal);
-    resultEl.className = 'formula-result' + (invalid ? ' invalid' : '');
-    resultEl.textContent = invalid ? '⚠ معادلة غير صالحة' : '= ' + fmt(t.woodPaid);
+  if($('wood-paid-input').value !== String(t.woodPaid || '')){
+    $('wood-paid-input').value = t.woodPaid || '';
   }
 
   $('misc-total').textContent = money(sum('misc'));
@@ -850,7 +723,7 @@ function updatePrintMeta(){
   if(state.project.date) p.push('التاريخ: '+state.project.date);
   if(state.project.currency) p.push('العملة: '+state.project.currency);
   p.push(state.project.includeWoodInCosts ? 'الخشب: محتسب' : 'الخشب: منفصل');
-  el.textContent = p.join('   •   ') || '—';
+  el.textContent = p.join('   •   ') || '--';
 }
 
 function bindTable(key){
@@ -867,9 +740,8 @@ function bindTable(key){
       if(resultEl){
         const invalid = row.laborInput && !isFormulaValid(row.laborInput);
         resultEl.className = invalid ? 'formula-result invalid' : 'formula-result';
-        resultEl.textContent = invalid ? '⚠ معادلة غير صالحة' : '= ' + fmt(row.labor);
+        resultEl.textContent = invalid ? '⚠ مساعد  غير صالحة' : '= ' + fmt(row.labor);
       }
-      e.target.classList.toggle('invalid', row.laborInput && !isFormulaValid(row.laborInput));
       const cells = tr.querySelectorAll('.row-total, .row-net');
       if(cells[0]) cells[0].textContent = fmt(concreteRowValue(row));
       if(cells[1]){
@@ -978,13 +850,8 @@ function migrateData(data){
     });
   }
   delete data.sections.labor;
-  if(data.project){
-    if(typeof data.project.includeWoodInCosts === 'undefined') data.project.includeWoodInCosts = false;
-    if(typeof data.project.woodPaid === 'undefined') data.project.woodPaid = 0;
-    if(typeof data.project.woodPaidInput === 'undefined'){
-      data.project.woodPaidInput = (num(data.project.woodPaid) !== 0) ? String(data.project.woodPaid) : '';
-    }
-  }
+  if(data.project && typeof data.project.includeWoodInCosts === 'undefined') data.project.includeWoodInCosts = false;
+  if(data.project && typeof data.project.woodPaid === 'undefined') data.project.woodPaid = 0;
   ['received','payments'].forEach(k => {
     if(Array.isArray(data.sections[k])){
       data.sections[k].forEach(r => { if(typeof r.date === 'undefined') r.date = ''; });
@@ -1027,7 +894,7 @@ function restoreJSON(e){
       if(!data || !data.sections) throw new Error('bad');
       data = migrateData(data);
       if(!confirm('سيتم استبدال البيانات الحالية. متابعة؟')) return;
-      state.project = { name:'', client:'', date:'', currency:'ج.م', contract:0, received:0, includeWoodInCosts: false, woodPaid: 0, woodPaidInput: '', ...(data.project||{}) };
+      state.project = { name:'', client:'', date:'', currency:'ج.م', contract:0, received:0, includeWoodInCosts: false, woodPaid: 0, ...(data.project||{}) };
       SECTIONS.forEach(k=>{ state.sections[k] = Array.isArray(data.sections[k]) ? data.sections[k] : []; });
       fixUid(); fillProjectInputs(); renderAll(); save();
       toast('📤 تم الاسترجاع بنجاح', 'ok');
@@ -1037,9 +904,9 @@ function restoreJSON(e){
   reader.readAsText(file);
 }
 
-/* ============ Excel ============ */
 function htmlEsc(s){
-  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
 function buildSheets(){
@@ -1047,20 +914,19 @@ function buildSheets(){
   const cVal = sumConcreteValue(), cNet = sumConcreteNet();
   const cMargin = cVal > 0 ? (cNet/cVal)*100 : 0;
   const includeWood = !!state.project.includeWoodInCosts;
-  const woodPaidFormula = state.project.woodPaidInput || String(t.woodPaid || '0');
 
   const s = [];
   s.push([{v:'تقرير مقاولات الخرسانة', s:'title'}]);
   s.push([{v:'', s:''}]);
-  s.push([{v:'اسم المشروع', s:'label'}, {v:state.project.name||'—', s:''}]);
-  s.push([{v:'اسم العميل', s:'label'}, {v:state.project.client||'—', s:''}]);
-  s.push([{v:'التاريخ', s:'label'}, {v:state.project.date||'—', s:''}]);
+  s.push([{v:'اسم المشروع', s:'label'}, {v:state.project.name||'--', s:''}]);
+  s.push([{v:'اسم العميل', s:'label'}, {v:state.project.client||'--', s:''}]);
+  s.push([{v:'التاريخ', s:'label'}, {v:state.project.date||'--', s:''}]);
   s.push([{v:'العملة', s:'label'}, {v:cur, s:''}]);
   s.push([{v:'حالة الخشب', s:'label'}, {v:includeWood ? 'محتسبة في التكاليف' : 'منفصلة', s:includeWood?'total':'wood'}]);
   s.push([{v:'', s:''}]);
   s.push([{v:'البيان', s:'hdr'}, {v:'القيمة ('+cur+')', s:'hdr'}]);
   s.push([{v:'المسامير والشامبر والبسكوت', s:'label'}, {v:t.misc, s:'money'}]);
-  s.push([{v:'الصناعية (الخرسانة)', s:'label'}, {v:t.concreteLabor, s:'money'}]);
+  s.push([{v:'الصنايعيه (الخرسانة)', s:'label'}, {v:t.concreteLabor, s:'money'}]);
   s.push([{v:'مصروفات نقل ومعدات', s:'label'}, {v:t.transport, s:'money'}]);
   if(includeWood){
     s.push([{v:'🪵 تكلفة الخشب', s:'wood'}, {v:t.wood, s:'woodMoney'}]);
@@ -1091,13 +957,12 @@ function buildSheets(){
   wr.push([{v:'', s:''}]);
   wr.push([{v:'م', s:'hdr'}, {v:'البيان', s:'hdr'}, {v:'الكمية', s:'hdr'}, {v:'سعر الوحدة', s:'hdr'}, {v:'الإجمالي', s:'hdr'}]);
   (state.sections.wood||[]).forEach((r,i)=>{
-    wr.push([{v:i+1, s:''}, {v:r.desc||'—', s:''}, {v:num(r.qty), s:'money'}, {v:num(r.price), s:'money'}, {v:rowTotal(r), s:'money'}]);
+    wr.push([{v:i+1, s:''}, {v:r.desc||'--', s:''}, {v:num(r.qty), s:'money'}, {v:num(r.price), s:'money'}, {v:rowTotal(r), s:'money'}]);
   });
   wr.push([{v:'', s:''}]);
   wr.push([{v:'', s:'total'}, {v:'الإجمالي', s:'total'}, {v:'', s:'total'}, {v:'', s:'total'}, {v:sum('wood'), s:'totalMoney'}]);
   wr.push([{v:'', s:''}]);
-  wr.push([{v:'', s:'wood'}, {v:'✅ المسدد', s:'wood'}, {v:'المعادلة:', s:'wood'},
-           {v:woodPaidFormula, s:'formulaWood'}, {v:t.woodPaid, s:'woodMoney'}]);
+  wr.push([{v:'', s:'wood'}, {v:'✅ المسدد', s:'wood'}, {v:'', s:'wood'}, {v:'', s:'wood'}, {v:t.woodPaid, s:'woodMoney'}]);
   wr.push([{v:'', s:'wood'}, {v:'⏳ المتبقي', s:'wood'}, {v:'', s:'wood'}, {v:'', s:'wood'}, {v:t.woodRemaining, s:'woodMoney'}]);
   sheets.push({name:'الخشب', rows:wr, widths:[40,220,80,110,120]});
 
@@ -1108,7 +973,7 @@ function buildSheets(){
     rows.push([{v:'', s:''}]);
     rows.push([{v:'م', s:'hdr'}, {v:'البيان', s:'hdr'}, {v:'الكمية', s:'hdr'}, {v:'سعر الوحدة', s:'hdr'}, {v:'الإجمالي', s:'hdr'}]);
     (state.sections[def.key]||[]).forEach((r,i)=>{
-      rows.push([{v:i+1, s:''}, {v:r.desc||'—', s:''}, {v:num(r.qty), s:'money'}, {v:num(r.price), s:'money'}, {v:rowTotal(r), s:'money'}]);
+      rows.push([{v:i+1, s:''}, {v:r.desc||'--', s:''}, {v:num(r.qty), s:'money'}, {v:num(r.price), s:'money'}, {v:rowTotal(r), s:'money'}]);
     });
     rows.push([{v:'', s:''}]);
     rows.push([{v:'', s:'total'}, {v:'الإجمالي', s:'total'}, {v:'', s:'total'}, {v:'', s:'total'}, {v:sum(def.key), s:'totalMoney'}]);
@@ -1116,23 +981,26 @@ function buildSheets(){
   });
 
   const cr = [];
-  cr.push([{v:'بنود الخرسانة (الصناعية والصافي)', s:'title'}]);
+  cr.push([{v:'بنود الخرسانة (الصنايعيه والصافي)', s:'title'}]);
   cr.push([{v:'', s:''}]);
   cr.push([
     {v:'م', s:'hdr'}, {v:'البند', s:'hdr'},
-    {v:'الصناعية (الإجمالي)', s:'hdr'},
-    {v:'المعادلة المستخدمة', s:'hdr'},
+    {v:'الصنايعيه (الإجمالي)', s:'hdr'},
+    {v:'المساعد  المستخدمة', s:'hdr'},
     {v:'الكمية (م³)', s:'hdr'}, {v:'سعر المتر', s:'hdr'},
     {v:'قيمة الخرسانة', s:'hdr'}, {v:'الصافي', s:'hdr'}
   ]);
   (state.sections.concrete||[]).forEach((r,i)=>{
     const expr = (typeof r.laborInput === 'string') ? r.laborInput : '';
     cr.push([
-      {v:i+1, s:''}, {v:r.desc||'—', s:''},
+      {v:i+1, s:''},
+      {v:r.desc||'--', s:''},
       {v:num(r.labor), s:'money'},
       {v:expr || String(r.labor||'0'), s:'formula'},
-      {v:num(r.qty), s:'money'}, {v:num(r.price), s:'money'},
-      {v:concreteRowValue(r), s:'money'}, {v:concreteRowNet(r), s:'money'}
+      {v:num(r.qty), s:'money'},
+      {v:num(r.price), s:'money'},
+      {v:concreteRowValue(r), s:'money'},
+      {v:concreteRowNet(r), s:'money'}
     ]);
   });
   cr.push([{v:'', s:''}]);
@@ -1148,7 +1016,7 @@ function buildSheets(){
   rc.push([{v:'', s:''}]);
   rc.push([{v:'م', s:'hdr'}, {v:'البيان', s:'hdr'}, {v:'التاريخ', s:'hdr'}, {v:'المبلغ ('+cur+')', s:'hdr'}]);
   (state.sections.received||[]).forEach((r,i)=>{
-    rc.push([{v:i+1, s:''}, {v:r.desc||'—', s:''}, {v:r.date||'—', s:'date'}, {v:num(r.price), s:'money'}]);
+    rc.push([{v:i+1, s:''}, {v:r.desc||'--', s:''}, {v:r.date||'--', s:'date'}, {v:num(r.price), s:'money'}]);
   });
   rc.push([{v:'', s:''}]);
   rc.push([{v:'', s:'total'}, {v:'الإجمالي', s:'total'}, {v:'', s:'total'}, {v:sum('received'), s:'totalMoney'}]);
@@ -1159,7 +1027,7 @@ function buildSheets(){
   p.push([{v:'', s:''}]);
   p.push([{v:'م', s:'hdr'}, {v:'البيان', s:'hdr'}, {v:'التاريخ', s:'hdr'}, {v:'المبلغ ('+cur+')', s:'hdr'}]);
   (state.sections.payments||[]).forEach((r,i)=>{
-    p.push([{v:i+1, s:''}, {v:r.desc||'—', s:''}, {v:r.date||'—', s:'date'}, {v:num(r.price), s:'money'}]);
+    p.push([{v:i+1, s:''}, {v:r.desc||'--', s:''}, {v:r.date||'--', s:'date'}, {v:num(r.price), s:'money'}]);
   });
   p.push([{v:'', s:''}]);
   p.push([{v:'', s:'total'}, {v:'الإجمالي', s:'total'}, {v:'', s:'total'}, {v:sum('payments'), s:'totalMoney'}]);
@@ -1212,8 +1080,7 @@ function exportExcel(){
       'td.wood{background:#fef3c7;color:#92400e;font-weight:bold}',
       'td.woodMoney{mso-number-format:"\\#\\,\\#\\#0\\.00";text-align:left;direction:ltr;background:#fef3c7;color:#92400e;font-weight:bold}',
       'td.date{text-align:center;direction:ltr;mso-number-format:"Short Date"}',
-      'td.formula{text-align:left;direction:ltr;font-family:"Courier New",monospace;font-size:9.5pt;background:#f0f9ff}',
-      'td.formulaWood{text-align:left;direction:ltr;font-family:"Courier New",monospace;font-size:9.5pt;background:#fef3c7;color:#92400e}'
+      'td.formula{text-align:left;direction:ltr;font-family:"Courier New",monospace;font-size:9.5pt;background:#f0f9ff}'
     ].join('');
 
     const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" ' +
@@ -1228,8 +1095,8 @@ function exportExcel(){
 
     const filename = fileBase() + '.xls';
     const ok = downloadFile(filename, '\ufeff' + html, 'application/vnd.ms-excel;charset=utf-8');
-    if(ok) toast('📊 تم التصدير — الملف في مجلد Download', 'ok');
-    else toast('❌ فشل التنزيل — جرّب متصفح Chrome', 'err');
+    if(ok) toast('📊 تم التصدير -- الملف في مجلد Download', 'ok');
+    else toast('❌ فشل التنزيل -- جرّب متصفح Chrome', 'err');
   }catch(err){
     console.error('Excel export error:', err);
     toast('❌ خطأ: ' + (err.message || 'غير معروف'), 'err');
@@ -1256,21 +1123,12 @@ function fillProjectInputs(){
   $('p-currency').value = state.project.currency || 'ج.م';
   $('p-contract').value = state.project.contract || '';
   const wp = $('wood-paid-input');
-  if(wp){
-    wp.value = state.project.woodPaidInput || '';
-    const resultEl = $('wood-paid-result');
-    if(resultEl){
-      const invalid = wp.value && !isFormulaValid(wp.value);
-      resultEl.className = 'formula-result' + (invalid ? ' invalid' : '');
-      resultEl.textContent = invalid ? '⚠ معادلة غير صالحة' : '= ' + fmt(state.project.woodPaid || 0);
-    }
-    wp.classList.toggle('invalid', wp.value && !isFormulaValid(wp.value));
-  }
+  if(wp) wp.value = state.project.woodPaid || '';
 }
 
 function resetAll(){
   if(!confirm('بدء مشروع جديد؟ سيتم حذف كل البيانات.')) return;
-  state.project = { name:'', client:'', date:'', currency:'ج.م', contract:0, received:0, includeWoodInCosts: false, woodPaid: 0, woodPaidInput: '' };
+  state.project = { name:'', client:'', date:'', currency:'ج.م', contract:0, received:0, includeWoodInCosts: false, woodPaid: 0 };
   SECTIONS.forEach(k => state.sections[k] = []);
   try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
   state.project.date = dateStamp();
@@ -1301,8 +1159,8 @@ function seedDefaults(){
     newRow({desc:'نقل خامات',qty:1,price:0}),
     newRow({desc:'إيجار معدات',qty:1,price:0})
   ];
-  state.sections.received = [newRow({desc:'دفعة أولى من العميل', price:0, date: today})];
-  state.sections.payments = [newRow({desc:'دفعة أولى للنجارين', price:0, date: today})];
+  state.sections.received = [newRow({desc:'دفعة ولى من العميل', price:0, date: today})];
+  state.sections.payments = [newRow({desc:'دفعة ولى للنجارين', price:0, date: today})];
 }
 
 document.addEventListener('keydown', e=>{
@@ -1312,7 +1170,6 @@ window.addEventListener('beforeprint', updatePrintMeta);
 window.addEventListener('beforeunload', save);
 
 (function init(){
-  setupPWA();
   bindProject();
   bindWoodPaid();
   SECTIONS.forEach(bindTable);
